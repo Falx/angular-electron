@@ -1,18 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ElectronService } from './providers/electron.service';
-import { TranslateService } from '@ngx-translate/core';
 import { AppConfig } from '../environments/environment';
+import { SessionService } from './session.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  constructor(public electronService: ElectronService,
-    private translate: TranslateService) {
+export class AppComponent implements OnInit {
+  authed: boolean = false;
+  admin: boolean = false;
 
-    translate.setDefaultLang('en');
+  constructor(public electronService: ElectronService, private session: SessionService) {
     console.log('AppConfig', AppConfig);
 
     if (electronService.isElectron()) {
@@ -21,6 +21,16 @@ export class AppComponent {
       console.log('NodeJS childProcess', electronService.childProcess);
     } else {
       console.log('Mode web');
+    }
+  }
+
+  ngOnInit() {
+    if (!this.session.client.isAuthenticated) {
+      this.session.client.login();
+    }
+    else {
+      this.authed = this.session.client.isAuthenticated;
+      this.admin = this.session.isAdmin;
     }
   }
 }

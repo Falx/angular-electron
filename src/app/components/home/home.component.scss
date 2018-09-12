@@ -1,17 +1,45 @@
 .container {
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  padding-top: 80px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(3, 100px);
+  grid-template-areas:
+  "title details"
+  "scopes scopes"
+  "btn btn";
+  grid-row-gap: 10px;
+  grid-column-gap: 15px;
+  align-items: end;
+  justify-items: center;
 
   background: url(../../../assets/background.jpg) no-repeat center fixed;
   -webkit-background-size: cover; /* pour anciens Chrome et Safari */
   background-size: cover; /* version standardisée */
+  
+  color: white;
 
-  .title {
-    color: white;
-    margin:0;
-    padding:50px 20px;
+  .title{
+    
+    grid-area: title;
+    justify-self: end;
+    h1 {margin: 0;}
+  }
+
+  .details {
+    grid-area: details;
+    justify-self: start;
+  }
+
+  .token{
+    grid-area: scopes;
+    align-self: start;
+  }
+
+  .logout {
+    grid-area: btn;
+    align-self: start;
+    justify-self: center;
   }
 
 }

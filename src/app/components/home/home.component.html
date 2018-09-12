@@ -1,5 +1,17 @@
 <div class="container">
-  <h1 class="title">
-    {{ 'PAGES.HOME.TITLE' | translate }}
-  </h1>
+  <div class="title">
+    <h1>
+      Hi {{token.given_name}}!
+    </h1>
+  </div>
+  <div class="details">
+    Logged in: {{authed}}<br>
+    Admin: {{admin}}
+  </div>
+  <div class="token">
+    <pre>{{scopes | json}}</pre>
+  </div>
+  <div class="logout">
+    <button (click)="logout()">logout</button>
+  </div>
 </div>
