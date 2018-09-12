@@ -10,8 +10,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { WebviewDirective } from './directives/webview.directive';
 import { ElectronService } from './providers/electron.service';
-import { SessionService } from './session.service';
-
 
 @NgModule({
   declarations: [
@@ -26,19 +24,8 @@ import { SessionService } from './session.service';
     AppRoutingModule
   ],
   providers: [
-    ElectronService,
-    SessionService,
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initialize,
-      deps: [SessionService],
-      multi: true
-    }
+    ElectronService
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-
-export function initialize(session: SessionService) {
-  return () => session.init();
-}

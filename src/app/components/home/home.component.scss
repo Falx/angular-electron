@@ -1,16 +1,8 @@
 .container {
   height: 100%;
   display: grid;
-  padding-top: 80px;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: repeat(3, 100px);
-  grid-template-areas:
-  "title details"
-  "scopes scopes"
-  "btn btn";
-  grid-row-gap: 10px;
-  grid-column-gap: 15px;
-  align-items: end;
+  grid-template-areas: "title";
+  align-items: center;
   justify-items: center;
 
   background: url(../../../assets/background.jpg) no-repeat center fixed;
@@ -20,26 +12,7 @@
   color: white;
 
   .title{
-    
     grid-area: title;
-    justify-self: end;
     h1 {margin: 0;}
   }
-
-  .details {
-    grid-area: details;
-    justify-self: start;
-  }
-
-  .token{
-    grid-area: scopes;
-    align-self: start;
-  }
-
-  .logout {
-    grid-area: btn;
-    align-self: start;
-    justify-self: center;
-  }
-
 }

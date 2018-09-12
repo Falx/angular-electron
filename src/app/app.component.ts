@@ -1,18 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { ElectronService } from './providers/electron.service';
+import { Component } from '@angular/core';
 import { AppConfig } from '../environments/environment';
-import { SessionService } from './session.service';
+import { ElectronService } from './providers/electron.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   authed: boolean = false;
   admin: boolean = false;
 
-  constructor(public electronService: ElectronService, private session: SessionService) {
+  constructor(public electronService: ElectronService) {
     console.log('AppConfig', AppConfig);
 
     if (electronService.isElectron()) {
@@ -21,16 +20,6 @@ export class AppComponent implements OnInit {
       console.log('NodeJS childProcess', electronService.childProcess);
     } else {
       console.log('Mode web');
-    }
-  }
-
-  ngOnInit() {
-    if (!this.session.client.isAuthenticated) {
-      this.session.client.login();
-    }
-    else {
-      this.authed = this.session.client.isAuthenticated;
-      this.admin = this.session.isAdmin;
     }
   }
 }

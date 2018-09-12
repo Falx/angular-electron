@@ -1,17 +1,7 @@
 <div class="container">
   <div class="title">
     <h1>
-      Hi {{token.given_name}}!
+      Hi {{name}}!
     </h1>
-  </div>
-  <div class="details">
-    Logged in: {{authed}}<br>
-    Admin: {{admin}}
-  </div>
-  <div class="token">
-    <pre>{{scopes | json}}</pre>
-  </div>
-  <div class="logout">
-    <button (click)="logout()">logout</button>
   </div>
 </div>
